@@ -19,7 +19,7 @@ def rainbow(freq, i):
     # return "%0x"%(int(red)), "%0x"%(int(green)), "%0x"%(int(blue))
     return int(red), int(green), int(blue)
 
-def print_rainbow_text(text, freq=220):
+def print_rainbow_text(text, freq=220, end="\n"):
     """Prints rainbow text
     
     Args:
@@ -28,6 +28,7 @@ def print_rainbow_text(text, freq=220):
         freq (int, optional): Frequency determines rate of colour change. It's a sine wave so 
                               changing values on extremes might not help. Sweet spot is 220,
                               stick to it.
+        end (str, optional): Similar to end param in print function
     """
     for i,c in enumerate(text):
         if type(text) != list:
@@ -39,6 +40,7 @@ def print_rainbow_text(text, freq=220):
                 r,g,b = rainbow(freq, i*10 + j)
                 color2 = "\033[38;2;%d;%d;%dm"%(r,g,b)
                 print(color2+cagain+"\033[0m", end="")
+    print(end=end)
  
 def main():
     parser = argparse.ArgumentParser()

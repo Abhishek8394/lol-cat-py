@@ -1,3 +1,3 @@
-from . import main as lolpy
+from .main import print_rainbow_text as lol_py
 
-__all__ = ["lolpy"]
+__all__ = ["lol_py"]
