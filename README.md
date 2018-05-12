@@ -6,10 +6,8 @@ This is a port of the lolcat [orginally](https://github.com/busyloop/lolcat) mad
 
 ## Installation
 
-1. From the repo: Download and extract somewhere first.
-
 ```bash
-pip install -e <path-to-repo>
+pip install lolpython
 ```
 
 ## Usage
