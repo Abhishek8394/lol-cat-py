@@ -1,8 +1,9 @@
 # Introduction
 
-This is a port of the lolcat [orginally](https://github.com/busyloop/lolcat) made in ruby.
+This is inspired from lolcat [orginally](https://github.com/busyloop/lolcat) made in ruby.
+This project is available on **pypi** as a python package.
 
-**Note:** Works on linux ,mac, cygwin and presumably on win 10+ cmd lines
+**Note:** Works on linux ,mac, cygwin and presumably on win 10+ cmd lines, outputs plain text if terminal support not found.
 
 ## Installation
 
