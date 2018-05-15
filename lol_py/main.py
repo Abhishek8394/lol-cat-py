@@ -1,7 +1,22 @@
 from __future__ import print_function, division
 import sys
+import os
 from math import sin, pi
 import argparse
+
+def supports_color():
+    """
+    Returns True if the running system's terminal supports color, and False
+    otherwise.
+    """
+    plat = sys.platform    
+    supported_platform = plat != 'Pocket PC' and (plat != 'win32' or
+                                                  'ANSICON' in os.environ)
+    # isatty is not always implemented, #6223.
+    is_a_tty = hasattr(sys.stdout, 'isatty') and sys.stdout.isatty()
+    if not supported_platform or not is_a_tty:
+        return False
+    return True
 
 def rainbow(freq, i):
     """Creates RGB values, inspired from https://github.com/busyloop/lolcat
@@ -20,7 +35,8 @@ def rainbow(freq, i):
     return int(red), int(green), int(blue)
 
 def print_rainbow_text(text, freq=220, end="\n"):
-    """Prints rainbow text
+    """Prints rainbow text if terminal support for colour text is detected, 
+       else falls back to default terminal settings.
     
     Args:
         text (str/list(str)): String or list of str. Provide list to make the whole
@@ -28,8 +44,16 @@ def print_rainbow_text(text, freq=220, end="\n"):
         freq (int, optional): Frequency determines rate of colour change. It's a sine wave so 
                               changing values on extremes might not help. Sweet spot is 220,
                               stick to it.
-        end (str, optional): Similar to end param in print function
+        end (str, optional): Similar to `end` param in print function
     """
+    if not supports_color():
+        # print to stderr so doesn't mess with IO redirections.
+        sys.stderr.write("No support for colour on this terminal. Try bash/cygwin." + os.linesep)        
+        if type(text) == list:
+            print("".join(text), end=end)
+        else:
+            print(text, end=end)
+        return
     for i,c in enumerate(text):
         if type(text) != list:
             r,g,b = rainbow(freq, i)
@@ -37,6 +61,7 @@ def print_rainbow_text(text, freq=220, end="\n"):
             print(color2+c+"\033[0m", end="")
         else:
             for j, cagain in enumerate(c):
+                # this formula helps colours spread on whole paragraph. 
                 r,g,b = rainbow(freq, i*10 + j)
                 color2 = "\033[38;2;%d;%d;%dm"%(r,g,b)
                 print(color2+cagain+"\033[0m", end="")
