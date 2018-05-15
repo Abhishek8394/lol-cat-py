@@ -18,20 +18,21 @@ pip install lolpython
 ```python
 from lolpython import lol_py 
 
-text = "hello world"
+text = "Lorem ipsum..."
 lol_py(text)
 
 ```
+![colourful output echoed](https://github.com/Abhishek8394/lol-cat-py/blob/master/screenshot.png?raw=true "output of previous command")
 
 #### 2. From cmd line
 
 ```bash
-lolpy --inp-file "rainbow_this_file.txt"
+lolpython --inp-file "rainbow_this_file.txt"
 
 # if want to do interactive
->> lolpy
->> lorem ipsum
->> hello world
->> [ctrl+d]
+>> lolpython
+>>.. lorem ipsum
+>>.. hello world
+>>.. [ctrl+d]
 >> # rainbow version of the input typed so far
 ```
