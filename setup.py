@@ -1,15 +1,14 @@
 from setuptools import setup
 
 setup(name='lolpython',
-      version='0.1',
       description='lolcat port of the ruby version',
       url='https://github.com/Abhishek8394/lol-cat-py',
       author='Abhishek8394',
       author_email='apbytes@gmail.com',
-      license='GPLv2',
-      packages=['lol_py'],
+      license='GPLv3',
+      packages=['lolpython'],
       entry_points={
-            'console_scripts': ['lolpython=lol_py.main:main']
+            'console_scripts': ['lolpython=lolpython.main:main']
       },
       include_package_date=True,
       zip_safe=False)

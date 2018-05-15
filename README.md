@@ -16,7 +16,7 @@ pip install lolpython
 #### 1. From code
 
 ```python
-from lol_py import lol_py 
+from lolpython import lol_py 
 
 text = "hello world"
 lol_py(text)
