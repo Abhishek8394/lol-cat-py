@@ -1,6 +1,7 @@
 from setuptools import setup
 
 setup(name='lolpython',
+      version='1.1.0',
       description='lolcat port of the ruby version',
       url='https://github.com/Abhishek8394/lol-cat-py',
       author='Abhishek8394',
