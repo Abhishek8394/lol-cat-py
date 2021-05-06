@@ -4,16 +4,29 @@ import os
 from math import sin, pi
 import argparse
 
+import psutil
+import re
+
+
+def detect_windows_terminal():
+    """
+    Returns True if detects to be running in a powershell, False otherwise.
+    Taken from: https://stackoverflow.com/a/55598796
+    """
+    return sys.platform == 'win32' and os.environ.get('WT_SESSION', None) is not None
+
 def supports_color():
     """
     Returns True if the running system's terminal supports color, and False
     otherwise.
     """
-    plat = sys.platform    
-    supported_platform = plat != 'Pocket PC' and (plat != 'win32' or
-                                                  'ANSICON' in os.environ)
+    plat = sys.platform
+    supported_platform = plat != 'Pocket PC' and ('ANSICON' in os.environ)
+    is_wnd_term = detect_windows_terminal()
     # isatty is not always implemented, #6223.
     is_a_tty = hasattr(sys.stdout, 'isatty') and sys.stdout.isatty()
+    if (not supported_platform and is_wnd_term and is_a_tty):
+        return True
     if not supported_platform or not is_a_tty:
         return False
     return True
