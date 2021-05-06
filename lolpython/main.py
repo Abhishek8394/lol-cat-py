@@ -11,7 +11,6 @@ import re
 def detect_windows_terminal():
     """
     Returns True if detects to be running in a powershell, False otherwise.
-    Taken from: https://stackoverflow.com/a/55598796
     """
     return sys.platform == 'win32' and os.environ.get('WT_SESSION', None) is not None
 
