@@ -4,7 +4,7 @@ import os
 from math import sin, pi
 import argparse
 
-import psutil
+# import psutil
 import re
 
 
@@ -20,7 +20,8 @@ def supports_color():
     otherwise.
     """
     plat = sys.platform
-    supported_platform = plat != 'Pocket PC' and ('ANSICON' in os.environ)
+    supported_platform = (plat != 'Pocket PC' and ('ANSICON' in os.environ)) \
+                        or (plat.lower() == 'linux' and os.environ.get('TERM', '').endswith('256color'))
     is_wnd_term = detect_windows_terminal()
     # isatty is not always implemented, #6223.
     is_a_tty = hasattr(sys.stdout, 'isatty') and sys.stdout.isatty()
